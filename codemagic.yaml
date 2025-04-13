@@ -4,8 +4,7 @@ workflows:
     max_build_duration: 120
     instance_type: mac_mini_m2
     environment:
-      android:
-        sdk: 30
+      {}
     scripts:
       - name: Iniando emulado
         script: |
