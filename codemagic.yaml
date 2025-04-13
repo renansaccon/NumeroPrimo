@@ -7,14 +7,20 @@ workflows:
       android:
         sdk: 30
     scripts:
-      - name: Launch emulator
+      - name: Iniando emulado
         script: |
-          echo "Creating AVD"
-          echo "no" | avdmanager create avd -n test -k "system-images;android-30;google_apis;x86"
-          emulator -avd test -no-audio -no-window &
+          echo "insltando Android 30"
+          yes | sdkmanager "system-images;android-30;google_apis;x86"
+          echo "no" | avdmanager create avd -n test -k "system-images;android-30;google_apis;x86" --device "pixel"
+          $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window -gpu off &
           adb wait-for-device
-      - name: Test
+          adb shell input keyevent 82
+
+      - name: Testes
         script: |
-          set -e
           ./gradlew connectedAndroidTest
           adb logcat -d > emulator.log
+
+    artifacts:
+      - emulator.log
+      - app/build/reports/androidTests/connected/**/*
