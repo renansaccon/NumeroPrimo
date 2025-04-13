@@ -3,14 +3,18 @@ workflows:
     name: NumeroPrimo WorkFlow
     max_build_duration: 120
     instance_type: mac_mini_m2
-scripts:
-  - name: Launch emulator
-    script: |
-      cd $ANDROID_HOME/tools
-      emulator -avd emulator &
-      adb wait-for-device
-  - name: Test
-    script: |
-      set -e
-      ./gradlew connectedAndroidTest
-      adb logcat -d > emulator.log
+    environment:
+      android:
+        sdk: 30
+    scripts:
+      - name: Launch emulator
+        script: |
+          echo "Creating AVD"
+          echo "no" | avdmanager create avd -n test -k "system-images;android-30;google_apis;x86"
+          emulator -avd test -no-audio -no-window &
+          adb wait-for-device
+      - name: Test
+        script: |
+          set -e
+          ./gradlew connectedAndroidTest
+          adb logcat -d > emulator.log
