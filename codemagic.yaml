@@ -6,20 +6,16 @@ workflows:
     environment:
       {}
     scripts:
-      - name: Iniando emulado
+      - name: Launch emulator
         script: |
-          echo "insltando Android 30"
-          yes | sdkmanager "system-images;android-30;google_apis;x86"
-          echo "no" | avdmanager create avd -n test -k "system-images;android-30;google_apis;x86" --device "pixel"
-          $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window -gpu off &
+          cd $ANDROID_HOME/tools
+          emulator -avd emulator &
           adb wait-for-device
-          adb shell input keyevent 82
-
-      - name: Testes
+      - name: Test
         script: |
+          set -e
           ./gradlew connectedAndroidTest
           adb logcat -d > emulator.log
+    
 
-    artifacts:
-      - emulator.log
-      - app/build/reports/androidTests/connected/**/*
+
