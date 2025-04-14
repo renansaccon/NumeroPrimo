@@ -1,21 +1,35 @@
 workflows:
-  sample-workflow:
-    name: NumeroPrimo WorkFlow
+  native-android:
+    name: Native Android
     max_build_duration: 120
     instance_type: mac_mini_m2
     environment:
-      {}
+      android_signing:
+        - keystore_reference
+      vars:
+        PACKAGE_NAME: "io.codemagic.sample.androidnative"
     scripts:
-      - name: Launch emulator
+      - name: Set Android SDK location
         script: |
-          cd $ANDROID_HOME/tools
-          emulator -avd emulator &
-          adb wait-for-device
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/local.properties"
       - name: Test
         script: |
           set -e
           ./gradlew connectedAndroidTest
           adb logcat -d > emulator.log
+    artifacts:
+      - app/build/outputs/**/*.aab
+    publishing:
+      email:
+        recipients:
+          - sacconrenan@gmail.com
+        notify:
+          success: true
+          failure: true
+
+
+
+
     
 
 
