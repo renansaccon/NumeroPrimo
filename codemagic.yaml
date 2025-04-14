@@ -18,7 +18,6 @@ workflows:
         script: |
           set -e
           ./gradlew test
-          adb logcat -d > emulator.log
     artifacts:
       - app/build/outputs/**/*.aab
     publishing:
