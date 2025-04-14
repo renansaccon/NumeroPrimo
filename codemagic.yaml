@@ -10,7 +10,7 @@ workflows:
         PACKAGE_NAME: "io.codemagic.sample.androidnative"
     scripts:
       - name: Make gradlew executable
-      - script: chmod +x ./gradlew
+        script: chmod +x ./gradlew
       - name: Set Android SDK location
         script: |
           echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/local.properties"
