@@ -24,6 +24,8 @@ workflows:
         script: |
           set -e
           ./gradlew test
+      - name: Rodando Lint
+        script: ./gradlew lint
       - name: Buildando Apk
         script: |
           ./gradlew assembleDebug
@@ -36,9 +38,8 @@ workflows:
       email:
         recipients:
           - sacconrenan@gmail.com
-        notify:
-          success: true
-          failure: true
+      scripts:
+        - echo "Build enviado com sucesso!"
 
 
     
