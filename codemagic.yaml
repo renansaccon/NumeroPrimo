@@ -7,7 +7,7 @@ workflows:
       events:
         - push
       branch_patterns:
-        - pattern: main
+        - pattern: '*'
           include: true
     environment:
       android_signing:
