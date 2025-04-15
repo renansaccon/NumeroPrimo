@@ -26,3 +26,6 @@ class MainCalculaTeste {
         assertEquals(Primo(15), "não é primo")
     }
 }
+
+
+

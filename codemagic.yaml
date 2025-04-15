@@ -9,7 +9,7 @@ workflows:
       vars:
         PACKAGE_NAME: "io.codemagic.sample.androidnative"
     scripts:
-      - name: Make gradlew executable
+      - name: Permissão ao Gradlew
         script: chmod +x ./gradlew
       - name: Set Android SDK location
         script: |
@@ -18,6 +18,12 @@ workflows:
         script: |
           set -e
           ./gradlew test
+      - name: Buildando Apk
+        script: |
+          ./gradlew assembleDebug
+      - name: Buildando AAB
+        script: |
+          ./gradlew bundleRelease
     artifacts:
       - app/build/outputs/**/*.aab
     publishing:

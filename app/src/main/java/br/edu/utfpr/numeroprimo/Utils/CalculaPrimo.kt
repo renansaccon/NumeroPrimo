@@ -9,3 +9,4 @@ fun Primo(n: Int): String {
     }
     return "é primo"
 }
+
