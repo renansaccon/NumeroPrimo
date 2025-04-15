@@ -3,6 +3,12 @@ workflows:
     name: Native Android
     max_build_duration: 120
     instance_type: mac_mini_m2
+    trigger:
+      events:
+        - push
+      branch_patterns:
+        - pattern: main
+          include: true
     environment:
       android_signing:
         - keystore_reference
