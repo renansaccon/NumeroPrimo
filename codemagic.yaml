@@ -40,8 +40,6 @@ workflows:
           - sacconrenan@gmail.com
       scripts:
         - echo "Build enviado com sucesso!"
-
-
     
 
 
