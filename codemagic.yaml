@@ -33,13 +33,13 @@ workflows:
         script: |
           ./gradlew bundleRelease
     artifacts:
+      - app/build/outputs/**/*.apk
       - app/build/outputs/**/*.aab
+      - app/build/reports/lint-results.html
     publishing:
       email:
         recipients:
           - sacconrenan@gmail.com
-      scripts:
-        - echo "Build enviado com sucesso!"
     
 
 
