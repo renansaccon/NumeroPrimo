@@ -18,7 +18,7 @@ class MainCalculaTeste {
 
     @Test
     fun VerificaPrimo3(){
-        assertEquals(Primo(17), "não é primo")
+        assertEquals(Primo(17), "é primo")
     }
 
     @Test
