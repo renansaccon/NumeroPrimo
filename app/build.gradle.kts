@@ -16,6 +16,11 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+    lint {
+        abortOnError = false
+        checkReleaseBuilds = true
+        lintConfig  = file("lint.xml")
+    }
 
 
 
